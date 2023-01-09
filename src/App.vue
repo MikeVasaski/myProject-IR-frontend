@@ -15,14 +15,14 @@
   <router-view />
 </template>
 <script>
-import { MDBBtn, MDBNavbar } from 'mdb-vue-ui-kit'
+import { MDBBtn, MDBNavbar } from 'mdb-vue-ui-kit';
 
 export default {
   components: {
     MDBBtn,
     MDBNavbar
   }
-}
+};
 </script>
 <style lang="scss">
 #app {
