@@ -1,35 +1,106 @@
 <template>
-    <from>
-        <!-- username input -->
-        <MDBInput
-            type="username"
-            label="Username"
-            id="form1username"
-            v-model="Username_form "
-            wrapperClass="mb-4"
-        />
-        <!-- pwd input -->
-        <MDBInput
-            type="password"
-            label="password"
-            id="form1password"
-            v-model="Password_form"
-            wrapperClass="mb-4" 
-        />
-        <!-- submit button -->
-        <MDBBtn color="primary">Login</MDBBtn>
-    </from>
+  <div class="col-md-12">
+    <div class="card card-container">
+      <img
+        id="profile-img"
+        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+        class="profile-img-card"
+      />
+      <Form @submit="handleLogin" :validation-schema="schema">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <Field name="username" type="text" class="form-control" />
+          <ErrorMessage name="username" class="error-feedback" />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <Field name="password" type="password" class="form-control" />
+          <ErrorMessage name="password" class="error-feedback" />
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary btn-block" :disabled="loading">
+            <span
+              v-show="loading"
+              class="spinner-border spinner-border-sm"
+            ></span>
+            <span>Login</span>
+          </button>
+        </div>
+        <div class="form-group">
+          <div v-if="message" class="alert alert-danger" role="alert">
+            {{ message }}
+          </div>
+        </div>
+      </Form>
+    </div>
+  </div>
 </template>
-<script setup lang="ts">
-  import {
-    MDBRow,
-    MDBCol,
-    MDBInput,
-    MDBCheckbox,
-    MDBBtn,
-  } from "mdb-vue-ui-kit";
-  import { ref } from "vue";
-
-  const Username_form = ref("");
-  const Password_form = ref("");
+<script>
+import { Form, Field, ErrorMessage } from 'vee-validate';
+import * as yup from 'yup';
+import AuthService from '../../service/AuthService.js';
+export default {
+  name: 'LoginView',
+  components: {
+    Form,
+    Field,
+    ErrorMessage
+  },
+  data() {
+    const schema = yup.object().shape({
+      username: yup.string().required('User name is required!'),
+      password: yup.string().required('Password is required!')
+    });
+    return {
+      loading: false,
+      message: '',
+      schema
+    };
+  },
+  methods: {
+    handleLogin(user) {
+      AuthService.login(user)
+        .then(() => {
+          this.$router.push({ path: '/' });
+        })
+        .catch(() => {
+          this.message = 'could not login';
+        });
+    }
+  }
+};
 </script>
+<style scoped>
+label {
+  display: block;
+  margin-top: 10px;
+}
+.card-container.card {
+  max-width: 350px !important;
+  padding: 40px 40px;
+}
+.card {
+  background-color: #f7f7f7;
+  padding: 20px 25px 30px;
+  margin: 0 auto 25px;
+  margin-top: 50px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.profile-img-card {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+.error-feedback {
+  color: red;
+}
+</style>
