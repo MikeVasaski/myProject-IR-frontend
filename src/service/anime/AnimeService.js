@@ -1,5 +1,6 @@
+import { formatApiResponse } from '@/util/format-api-respomse';
 import apiClient from '../AxiosClient';
-import GStore from '@/store';
+// import GStore from '@/store';
 
 export default {
   //   getAnime() {
@@ -18,10 +19,8 @@ export default {
     return apiClient
       .post('/searchByTitle', query)
       .then((response) => {
-        var str_data = JSON.stringify(response.data);
-        console.log(JSON.parse(str_data));
-        var json_data = JSON.parse(str_data);
-        GStore.anime = json_data;
+        console.log('format', formatApiResponse(response.data));
+        return formatApiResponse(response.data);
       })
       .catch((error) => {
         return console.log(error);
