@@ -1,10 +1,9 @@
 <template>
-  <Navbercomp v-if="GStore.currentUser"></Navbercomp>
+  <Navbarcomp></Navbarcomp>
   <router-view />
 </template>
 <script>
 import Navbarcomp from './components/NavbarComp.vue';
-
 export default {
   inject: ['GStore'],
   name: 'HomeView',
