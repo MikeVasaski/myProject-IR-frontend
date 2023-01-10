@@ -19,9 +19,9 @@ export default {
       .post('/searchByTitle', query)
       .then((response) => {
         var str_data = JSON.stringify(response.data);
-        console.log(str_data);
+        console.log(JSON.parse(str_data));
         var json_data = JSON.parse(str_data);
-        GStore.animeTitle = json_data;
+        GStore.anime = json_data;
       })
       .catch((error) => {
         return console.log(error);
