@@ -27,7 +27,10 @@ export default {
         return console.log(error);
       });
   },
-  addBookmark() {
-    
+  addBookmark(uid, mal_id, score) {
+    return apiClient
+      .post('/addBookmark', {
+        
+      })
   }
 };
