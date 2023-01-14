@@ -1,13 +1,13 @@
 <template>
-  <!-- <router-link
+  <router-link
     class="anime-link"
-    :to="{ name: 'AnimeLayout', params: { id: anime.mal_id } }"
-  > -->
-  <div class="anime-card">
-    <img :src="anime.image" alt="anime_image" />
-    <h4>{{ anime.title }}</h4>
-  </div>
-  <!-- </router-link> -->
+    :to="{ name: 'DetailView', params: { id: anime.mal_id } }"
+  >
+    <div class="anime-card">
+      <img :src="anime.image" alt="anime_image" />
+      <h4>{{ anime.title }}</h4>
+    </div>
+  </router-link>
 </template>
 <script>
 export default {

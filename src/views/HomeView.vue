@@ -5,8 +5,6 @@
       :key="anime.mal_id"
       :anime="anime"
     ></AnimeCard>
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
 </template>
 
