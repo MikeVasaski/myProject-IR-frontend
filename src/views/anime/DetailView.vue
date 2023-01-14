@@ -9,11 +9,17 @@
       </p>
     </div>
   </div>
+  <button @click="addBookmark">Add to favorite</button>
 </template>
 <script>
+import AnimeService from '../../service/anime/AnimeService.js';
+
 export default {
   inject: ['GStore'],
-  name: 'DetailView'
+  name: 'DetailView',
+  methods: {
+    addBookmark(query) {}
+  }
 };
 </script>
 <style scoped>
