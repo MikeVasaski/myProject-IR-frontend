@@ -20,3 +20,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.home {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+</style>

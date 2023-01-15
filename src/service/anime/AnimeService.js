@@ -28,9 +28,10 @@ export default {
       });
   },
   addBookmark(uid, mal_id, score) {
-    return apiClient
-      .post('/addBookmark', {
-        
-      })
+    return apiClient.post('/addBookmark', {
+      uid: uid,
+      mal_id: mal_id,
+      score: score
+    });
   }
 };

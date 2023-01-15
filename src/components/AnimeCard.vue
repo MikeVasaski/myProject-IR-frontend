@@ -4,7 +4,7 @@
     :to="{ name: 'DetailView', params: { id: anime.mal_id } }"
   >
     <div class="anime-card">
-      <img :src="anime.image" alt="anime_image" />
+      <img :src="anime.images" alt="anime_image" />
       <h4>{{ anime.title }}</h4>
     </div>
   </router-link>
